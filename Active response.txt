@@ -1,0 +1,42 @@
+<!-- Active Response Config -->
+<active-response>
+    <!-- This response is going to execute the host-deny
+       - command for every event that fires a rule with
+       - level (severity) >= 6.
+       - The IP is going to be blocked for  600 seconds.
+      -->
+    <command>host-deny</command>
+    <location>local</location>
+    <level>6</level>
+    <timeout>600</timeout>
+</active-response>
+
+<active-response>
+    <!-- Firewall Drop response. Block the IP for
+       - 600 seconds on the firewall (iptables,
+       - ipfilter, etc).
+      -->
+    <!-- block ip attack sql injection -->
+    <command>firewall-drop</command>
+    <agent_id>001</agent_id>
+    <rules_id>31101</rules_id>
+    <location>local</location>
+    <level>10</level>
+    <timeout>600</timeout>
+
+    <command>firewall-drop</command>
+    <agent_id>001</agent_id>
+    <rules_id>5712</rules_id>
+    <location>local</location>
+    <timeout>300</timeout>
+ </active-response>
+
+ <!-- Block ipfw -->
+ <active-response>
+  <command>ipfw</command>
+    <agent_id>001</agent_id>
+    <location>local</location>
+    <level>4</level>
+    <timeout>300</timeout>
+ </active-response>
+
